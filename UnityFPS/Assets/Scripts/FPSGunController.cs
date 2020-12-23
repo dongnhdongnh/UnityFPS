@@ -33,7 +33,11 @@ public class FPSGunController : MonoBehaviour
 		}
 		if (Input.GetMouseButtonDown(1))
 		{
-			SwitchGunView();
+			SwitchGunView(true);
+		}
+		if (Input.GetMouseButtonUp(1))
+		{
+			SwitchGunView(false);
 		}
 	}
 	void LoadGunView()
@@ -49,9 +53,10 @@ public class FPSGunController : MonoBehaviour
 			HandView.transform.DOLocalMove(new Vector3(0.6f, -0.6f, 0.4f), 0.5f);
 		}
 	}
-	public void SwitchGunView()
+	public void SwitchGunView(bool isOnScope)
 	{
-		onScope = !onScope;
+		if (onScope == isOnScope) return;
+		onScope = isOnScope;
 		LoadGunView();
 	}
 	public void Shoot()
@@ -64,7 +69,9 @@ public class FPSGunController : MonoBehaviour
 			GunView.transform.localPosition = GunStartPosition;
 		}
 		);
-		FPSBulletController _bullet = SimplePool.Spawn(BulletPrefab, GunShootPoint.transform.position, Quaternion.identity);
-		_bullet.Init(-GunView.transform.forward);
+		FPSBulletController _bullet = SimplePool.Spawn(BulletPrefab, GunShootPoint.transform.position, GunShootPoint.transform.rotation);
+		//_bullet.Init(-GunView.transform.forward);
+		_bullet.GetComponent<Rigidbody>().velocity =
+							_bullet.transform.forward * 50;
 	}
 }

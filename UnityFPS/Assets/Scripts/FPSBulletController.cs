@@ -9,6 +9,10 @@ public class FPSBulletController : MonoBehaviour
 	Vector3 Director;
 
 	float killTime = 5;
+	private void OnEnable()
+	{
+		killTime = 10;
+	}
 	public void Init(Vector3 director)
 	{
 		this.Director = director;
