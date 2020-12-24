@@ -71,7 +71,6 @@ public class FPSGunController : MonoBehaviour
 		);
 		FPSBulletController _bullet = SimplePool.Spawn(BulletPrefab, GunShootPoint.transform.position, GunShootPoint.transform.rotation);
 		//_bullet.Init(-GunView.transform.forward);
-		_bullet.GetComponent<Rigidbody>().velocity =
-							_bullet.transform.forward * 50;
+		_bullet.Init(GunShootPoint.transform);
 	}
 }
