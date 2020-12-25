@@ -8,18 +8,24 @@ public class SimpleCharacterController : MonoBehaviour
 	public Rigidbody body;
 	public FPSBulletController bulletPrefab;
 	public Transform shootPoint;
+	public int HP;
 	public float moveSpeed = 100;
 	public bool canControl = false;
 	public Vector3 velocity;
+
+	int _currentHP = 0;
+	float _currentStundTime = 0;
 	// Start is called before the first frame update
 	void Start()
 	{
 		StartCoroutine(DoMove());
+		_currentHP = HP;
 	}
 
 	// Update is called once per frame
 	void Update()
 	{
+		if (_currentStundTime > 0) _currentStundTime -= Time.deltaTime;
 		velocity = body.velocity;
 		if (canControl)
 		{
@@ -41,14 +47,24 @@ public class SimpleCharacterController : MonoBehaviour
 			LookAt(GameplayController.Instance.mainCharacter);
 			moveWay = MoveDirectEnum.UP;
 			SetMove(moveWay);
+			SetAttack();
 
-			//SetTurn(turnWay);
 			yield return Yielders.Get(UnityEngine.Random.Range(0.5f, 2.0f));
 			SetMove(MoveDirectEnum.IDLE);
-			SetAttack();
+
 			yield return Yielders.Get(UnityEngine.Random.Range(0.5f, 2.0f));
 		}
-
+	}
+	public void SetHit()
+	{
+		animController.SetHit(_currentHP);
+	}
+	public void SetJump()
+	{
+		if (_currentStundTime > 0) return;
+		Vector3 _forward = transform.forward;
+		_forward.y = 10;
+		body.AddForce(_forward * moveSpeed);
 	}
 	public void LookAt(Transform target)
 	{
@@ -56,6 +72,7 @@ public class SimpleCharacterController : MonoBehaviour
 	}
 	public void SetTurn(MoveDirectEnum moveEnum)
 	{
+		if (_currentStundTime > 0) return;
 		switch (moveEnum)
 		{
 			case MoveDirectEnum.UP:
@@ -93,7 +110,7 @@ public class SimpleCharacterController : MonoBehaviour
 
 				break;
 			case MoveDirectEnum.RIGHT:
-				body.velocity =transform.right * moveSpeed;
+				body.velocity = transform.right * moveSpeed;
 
 				break;
 			case MoveDirectEnum.IDLE:
@@ -108,9 +125,20 @@ public class SimpleCharacterController : MonoBehaviour
 	}
 	public void SetAttack()
 	{
+		if (_currentStundTime > 0) return;
 		FPSBulletController _bullet = SimplePool.Spawn(bulletPrefab, shootPoint.position, shootPoint.rotation);
 		_bullet.Init(shootPoint);
 		animController.SetAttack();
+	}
+
+	private void OnCollisionEnter(Collision collision)
+	{
+		if (collision.gameObject.CompareTag("Bullet"))
+		{
+			_currentHP--;
+			_currentStundTime = 3;
+			SetHit();
+		}
 	}
 }
 public enum MoveDirectEnum

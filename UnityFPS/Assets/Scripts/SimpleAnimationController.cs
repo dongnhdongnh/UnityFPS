@@ -35,4 +35,9 @@ public class SimpleAnimationController : I3DAnimationController
 		base.SetAttack();
 		animator.SetTrigger("attack");
 	}
+	public override void SetHit()
+	{
+		base.SetHit();
+		animator.SetTrigger("gethit");
+	}
 }
