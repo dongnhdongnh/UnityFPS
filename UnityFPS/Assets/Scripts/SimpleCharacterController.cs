@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.AI;
+
 public class SimpleCharacterController : MonoBehaviour
 {
 	public I3DAnimationController animController;
@@ -11,14 +13,17 @@ public class SimpleCharacterController : MonoBehaviour
 	public int HP;
 	public float moveSpeed = 100;
 	public bool canControl = false;
-	public Vector3 velocity;
+
+	public NavMeshAgent AIController;
+
+	//	public Vector3 velocity;
 
 	int _currentHP = 0;
 	float _currentStundTime = 0;
 	// Start is called before the first frame update
 	void Start()
 	{
-		StartCoroutine(DoMove());
+		//StartCoroutine(DoMove());
 		_currentHP = HP;
 	}
 
@@ -26,7 +31,11 @@ public class SimpleCharacterController : MonoBehaviour
 	void Update()
 	{
 		if (_currentStundTime > 0) _currentStundTime -= Time.deltaTime;
-		velocity = body.velocity;
+		if (Vector3.Distance(GameplayController.Instance.mainCharacter.transform.position, transform.position) > 5)
+			AIController.SetDestination(GameplayController.Instance.mainCharacter.transform.position);
+		else
+			SetAttack();
+		//velocity = body.velocity;
 		if (canControl)
 		{
 			if (Input.GetKey(KeyCode.W)) SetMove(MoveDirectEnum.UP);
@@ -126,6 +135,7 @@ public class SimpleCharacterController : MonoBehaviour
 	public void SetAttack()
 	{
 		if (_currentStundTime > 0) return;
+		LookAt(GameplayController.Instance.mainCharacter);
 		FPSBulletController _bullet = SimplePool.Spawn(bulletPrefab, shootPoint.position, shootPoint.rotation);
 		_bullet.Init(shootPoint);
 		animController.SetAttack();
