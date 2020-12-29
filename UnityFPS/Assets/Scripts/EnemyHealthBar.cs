@@ -24,6 +24,7 @@ public class EnemyHealthBar : MonoBehaviour
 		RepositionHealthBar();
 		//healthBar.gameObject.SetActive(true);
 		this.transform.SetParent(this.targetCanvas, false);
+		gameObject.SetActive(false);
 	}
 	public void OnHealthChanged(float healthFill)
 	{

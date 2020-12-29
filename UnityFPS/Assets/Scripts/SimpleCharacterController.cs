@@ -83,7 +83,7 @@ if (_currentInAttack <= 0)
 
 			MoveDirectEnum moveWay = GameExtensions.RandomEnumValue<MoveDirectEnum>();
 			MoveDirectEnum turnWay = GameExtensions.RandomEnumValue<MoveDirectEnum>();
-			LookAt(GameplayController.Instance.mainCharacter);
+			LookAt(GameplayController.Instance.mainCharacter.transform);
 			moveWay = MoveDirectEnum.UP;
 			SetMove(moveWay);
 			SetAttack();
@@ -176,7 +176,7 @@ if (_currentInAttack <= 0)
 		if (_currentStundTime > 0) return;
 		if (_currentInAttack > 0) return;
 		_currentInAttack = 2;
-		LookAt(GameplayController.Instance.mainCharacter);
+		LookAt(GameplayController.Instance.mainCharacter.transform);
 		animController.SetAttack();
 	}
 

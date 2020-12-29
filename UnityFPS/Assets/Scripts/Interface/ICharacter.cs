@@ -7,8 +7,10 @@ public class ICharacter : MonoBehaviour
 	public CharacterType characterType;
 	public int HPMax;
 	public int HPCurrent { get; set; }
-	public virtual void Start()
+
+	public void InitHP(int value)
 	{
+		HPMax = value;
 		HPCurrent = HPMax;
 	}
 }

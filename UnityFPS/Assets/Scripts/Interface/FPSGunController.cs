@@ -69,8 +69,24 @@ public class FPSGunController : ICharacter
 			GunView.transform.localPosition = GunStartPosition;
 		}
 		);
+		MusicManager.Instance.PlayOneShot(MusicManager.Instance.MusicDB.SFX_GunShoot);
 		FPSBulletController _bullet = SimplePool.Spawn(BulletPrefab, GunShootPoint.transform.position, GunShootPoint.transform.rotation);
 		//_bullet.Init(-GunView.transform.forward);
 		_bullet.Init(GunShootPoint.transform, this);
+	}
+	private void OnCollisionEnter(Collision collision)
+	{
+		if (collision.gameObject.CompareTag("Bullet"))
+		{
+			FPSBulletController _bullet = collision.gameObject.GetComponent<FPSBulletController>();
+			if (_bullet != null && _bullet.Parent != null && _bullet.Parent.characterType.Equals(CharacterType.ENEMY))
+			{
+				HPCurrent--;
+				GUIInGameController.Instance.SetPlayerHP(HPCurrent);
+				GUIInGameController.Instance.SetTakeDameEffect();
+				//_currentStundTime = 3;
+				//SetHit();
+			}
+		}
 	}
 }
