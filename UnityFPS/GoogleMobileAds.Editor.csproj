@@ -298,53 +298,29 @@
     <Reference Include="ThreeExporter">
       <HintPath>E:/Projects/UnityFPS/UnityFPS/Assets/Editor/ThreeExporter/ThreeExporter.dll</HintPath>
     </Reference>
-    <Reference Include="Google.VersionHandler">
-      <HintPath>E:/Projects/UnityFPS/UnityFPS/Assets/ExternalDependencyManager/Editor/Google.VersionHandler.dll</HintPath>
-    </Reference>
-    <Reference Include="GETween">
-      <HintPath>E:/Projects/UnityFPS/UnityFPS/Assets/GUI Animator/Common/Plugins/GETween.dll</HintPath>
-    </Reference>
-    <Reference Include="GUIAnimatorFREE">
-      <HintPath>E:/Projects/UnityFPS/UnityFPS/Assets/GUI Animator/GUI Animator FREE/Plugins/GUIAnimatorFREE.dll</HintPath>
-    </Reference>
-    <Reference Include="FX Quest">
-      <HintPath>E:/Projects/UnityFPS/UnityFPS/Assets/FX Quest/Editor/FX Quest.dll</HintPath>
-    </Reference>
-    <Reference Include="Firebase.App">
-      <HintPath>E:/Projects/UnityFPS/UnityFPS/Assets/Firebase/Plugins/Firebase.App.dll</HintPath>
-    </Reference>
-    <Reference Include="Firebase.Analytics">
-      <HintPath>E:/Projects/UnityFPS/UnityFPS/Assets/Firebase/Plugins/Firebase.Analytics.dll</HintPath>
-    </Reference>
-    <Reference Include="Firebase.Platform">
-      <HintPath>E:/Projects/UnityFPS/UnityFPS/Assets/Firebase/Plugins/Firebase.Platform.dll</HintPath>
-    </Reference>
-    <Reference Include="Google.PackageManagerResolver_v1.2.162">
-      <HintPath>E:/Projects/UnityFPS/UnityFPS/Assets/ExternalDependencyManager/Editor/Google.PackageManagerResolver_v1.2.162.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Tasks">
-      <HintPath>E:/Projects/UnityFPS/UnityFPS/Assets/Parse/Plugins/dotNet45/Unity.Tasks.dll</HintPath>
-    </Reference>
-    <Reference Include="Google.VersionHandlerImpl_v1.2.162">
-      <HintPath>E:/Projects/UnityFPS/UnityFPS/Assets/ExternalDependencyManager/Editor/Google.VersionHandlerImpl_v1.2.162.dll</HintPath>
+    <Reference Include="Google.IOSResolver_v1.2.162">
+      <HintPath>E:/Projects/UnityFPS/UnityFPS/Assets/ExternalDependencyManager/Editor/Google.IOSResolver_v1.2.162.dll</HintPath>
     </Reference>
     <Reference Include="Google.JarResolver_v1.2.162">
       <HintPath>E:/Projects/UnityFPS/UnityFPS/Assets/ExternalDependencyManager/Editor/Google.JarResolver_v1.2.162.dll</HintPath>
     </Reference>
-    <Reference Include="Google.MiniJson">
-      <HintPath>E:/Projects/UnityFPS/UnityFPS/Assets/Firebase/Plugins/Google.MiniJson.dll</HintPath>
+    <Reference Include="Google.PackageManagerResolver_v1.2.162">
+      <HintPath>E:/Projects/UnityFPS/UnityFPS/Assets/ExternalDependencyManager/Editor/Google.PackageManagerResolver_v1.2.162.dll</HintPath>
     </Reference>
-    <Reference Include="Google.IOSResolver_v1.2.162">
-      <HintPath>E:/Projects/UnityFPS/UnityFPS/Assets/ExternalDependencyManager/Editor/Google.IOSResolver_v1.2.162.dll</HintPath>
+    <Reference Include="Google.VersionHandler">
+      <HintPath>E:/Projects/UnityFPS/UnityFPS/Assets/ExternalDependencyManager/Editor/Google.VersionHandler.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.VersionHandlerImpl_v1.2.162">
+      <HintPath>E:/Projects/UnityFPS/UnityFPS/Assets/ExternalDependencyManager/Editor/Google.VersionHandlerImpl_v1.2.162.dll</HintPath>
     </Reference>
     <Reference Include="Firebase.Editor">
       <HintPath>E:/Projects/UnityFPS/UnityFPS/Assets/Firebase/Editor/Firebase.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.Compat">
-      <HintPath>E:/Projects/UnityFPS/UnityFPS/Assets/Parse/Plugins/dotNet45/Unity.Compat.dll</HintPath>
+    <Reference Include="Firebase.Analytics">
+      <HintPath>E:/Projects/UnityFPS/UnityFPS/Assets/Firebase/Plugins/Firebase.Analytics.dll</HintPath>
     </Reference>
-    <Reference Include="Firebase.TaskExtension">
-      <HintPath>E:/Projects/UnityFPS/UnityFPS/Assets/Firebase/Plugins/Firebase.TaskExtension.dll</HintPath>
+    <Reference Include="Firebase.App">
+      <HintPath>E:/Projects/UnityFPS/UnityFPS/Assets/Firebase/Plugins/Firebase.App.dll</HintPath>
     </Reference>
     <Reference Include="Firebase.Auth">
       <HintPath>E:/Projects/UnityFPS/UnityFPS/Assets/Firebase/Plugins/Firebase.Auth.dll</HintPath>
@@ -352,14 +328,29 @@
     <Reference Include="Firebase.Database">
       <HintPath>E:/Projects/UnityFPS/UnityFPS/Assets/Firebase/Plugins/Firebase.Database.dll</HintPath>
     </Reference>
-    <Reference Include="Security">
-      <HintPath>E:/Projects/UnityFPS/UnityFPS/Assets/Plugins/UnityPurchasing/Bin/Security/live/Security.dll</HintPath>
+    <Reference Include="Firebase.Platform">
+      <HintPath>E:/Projects/UnityFPS/UnityFPS/Assets/Firebase/Plugins/Firebase.Platform.dll</HintPath>
     </Reference>
-    <Reference Include="Stores">
-      <HintPath>E:/Projects/UnityFPS/UnityFPS/Assets/Plugins/UnityPurchasing/Bin/Stores.dll</HintPath>
+    <Reference Include="Firebase.TaskExtension">
+      <HintPath>E:/Projects/UnityFPS/UnityFPS/Assets/Firebase/Plugins/Firebase.TaskExtension.dll</HintPath>
     </Reference>
-    <Reference Include="AppleCore">
-      <HintPath>E:/Projects/UnityFPS/UnityFPS/Assets/Plugins/UnityPurchasing/Bin/Apple/AppleCore.dll</HintPath>
+    <Reference Include="Google.MiniJson">
+      <HintPath>E:/Projects/UnityFPS/UnityFPS/Assets/Firebase/Plugins/Google.MiniJson.dll</HintPath>
+    </Reference>
+    <Reference Include="FX Quest">
+      <HintPath>E:/Projects/UnityFPS/UnityFPS/Assets/FX Quest/Editor/FX Quest.dll</HintPath>
+    </Reference>
+    <Reference Include="GETween">
+      <HintPath>E:/Projects/UnityFPS/UnityFPS/Assets/GUI Animator/Common/Plugins/GETween.dll</HintPath>
+    </Reference>
+    <Reference Include="GUIAnimatorFREE">
+      <HintPath>E:/Projects/UnityFPS/UnityFPS/Assets/GUI Animator/GUI Animator FREE/Plugins/GUIAnimatorFREE.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Compat">
+      <HintPath>E:/Projects/UnityFPS/UnityFPS/Assets/Parse/Plugins/dotNet45/Unity.Compat.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Tasks">
+      <HintPath>E:/Projects/UnityFPS/UnityFPS/Assets/Parse/Plugins/dotNet45/Unity.Tasks.dll</HintPath>
     </Reference>
     <Reference Include="Editor">
       <HintPath>E:/Projects/UnityFPS/UnityFPS/Assets/Plugins/UnityPurchasing/Bin/Editor.dll</HintPath>
@@ -367,17 +358,26 @@
     <Reference Include="Purchasing.Common">
       <HintPath>E:/Projects/UnityFPS/UnityFPS/Assets/Plugins/UnityPurchasing/Bin/Purchasing.Common.dll</HintPath>
     </Reference>
-    <Reference Include="winrt">
-      <HintPath>E:/Projects/UnityFPS/UnityFPS/Assets/Plugins/UnityPurchasing/winrt/winrt.dll</HintPath>
-    </Reference>
-    <Reference Include="FacebookStore">
-      <HintPath>E:/Projects/UnityFPS/UnityFPS/Assets/Plugins/UnityPurchasing/Bin/Facebook/FacebookStore.dll</HintPath>
+    <Reference Include="Stores">
+      <HintPath>E:/Projects/UnityFPS/UnityFPS/Assets/Plugins/UnityPurchasing/Bin/Stores.dll</HintPath>
     </Reference>
     <Reference Include="Apple">
       <HintPath>E:/Projects/UnityFPS/UnityFPS/Assets/Plugins/UnityPurchasing/Bin/Apple/Apple.dll</HintPath>
     </Reference>
+    <Reference Include="AppleCore">
+      <HintPath>E:/Projects/UnityFPS/UnityFPS/Assets/Plugins/UnityPurchasing/Bin/Apple/AppleCore.dll</HintPath>
+    </Reference>
     <Reference Include="AppleMacos">
       <HintPath>E:/Projects/UnityFPS/UnityFPS/Assets/Plugins/UnityPurchasing/Bin/Apple/AppleMacos.dll</HintPath>
+    </Reference>
+    <Reference Include="FacebookStore">
+      <HintPath>E:/Projects/UnityFPS/UnityFPS/Assets/Plugins/UnityPurchasing/Bin/Facebook/FacebookStore.dll</HintPath>
+    </Reference>
+    <Reference Include="Security">
+      <HintPath>E:/Projects/UnityFPS/UnityFPS/Assets/Plugins/UnityPurchasing/Bin/Security/live/Security.dll</HintPath>
+    </Reference>
+    <Reference Include="winrt">
+      <HintPath>E:/Projects/UnityFPS/UnityFPS/Assets/Plugins/UnityPurchasing/winrt/winrt.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework">
       <HintPath>E:/Projects/UnityFPS/UnityFPS/Library/PackageCache/com.unity.ext.nunit@1.0.0/net35/unity-custom/nunit.framework.dll</HintPath>
