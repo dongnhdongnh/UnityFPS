@@ -40,4 +40,9 @@ public class SimpleAnimationController : I3DAnimationController
 		base.SetHit(currentHP);
 		animator.SetTrigger("gethit");
 	}
+	//public override void SetAttackEvent(GameUtils.VoidEvent onAttackEvent)
+	//{
+	//	base.SetAttackEvent(onAttackEvent);
+
+	//}
 }

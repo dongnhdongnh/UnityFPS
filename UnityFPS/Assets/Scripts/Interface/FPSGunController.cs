@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
-public class FPSGunController : MonoBehaviour
+public class FPSGunController : ICharacter
 {
 	public GameObject HandView, GunView, GunShootPoint;
 	public FPSBulletController BulletPrefab;
@@ -71,6 +71,6 @@ public class FPSGunController : MonoBehaviour
 		);
 		FPSBulletController _bullet = SimplePool.Spawn(BulletPrefab, GunShootPoint.transform.position, GunShootPoint.transform.rotation);
 		//_bullet.Init(-GunView.transform.forward);
-		_bullet.Init(GunShootPoint.transform);
+		_bullet.Init(GunShootPoint.transform, this);
 	}
 }

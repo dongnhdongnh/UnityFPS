@@ -14,7 +14,7 @@ public class FPSBulletController : MonoBehaviour
 			return _BulletBody;
 		}
 	}
-
+	public ICharacter Parent { get; set; }
 	Vector3 Director;
 
 	float killTime = 5;
@@ -27,8 +27,9 @@ public class FPSBulletController : MonoBehaviour
 	//	this.Director = director;
 	//	BulletBody.AddForce(director * 100);
 	//}
-	public void Init(Transform shootPoint)
+	public void Init(Transform shootPoint, ICharacter parent)
 	{
+		this.Parent = parent;
 		transform.rotation = shootPoint.rotation;
 		transform.position = shootPoint.position;
 		BulletBody.velocity = transform.forward * 50;
@@ -39,9 +40,14 @@ public class FPSBulletController : MonoBehaviour
 		if (killTime < 0)
 			SimplePool.Despawn(gameObject);
 	}
-	private void OnCollisionStay(Collision collision)
+	private void OnCollisionEnter(Collision collision)
 	{
-		//	SimplePool.Despawn(gameObject);
+		if (Parent != null && collision.gameObject != Parent.gameObject)
+		{
+			SimplePool.Spawn(GameplayController.Instance.Effect_BulletHit, transform.position, transform.rotation);
+			SimplePool.Despawn(gameObject);
+
+		}
 	}
 
 }

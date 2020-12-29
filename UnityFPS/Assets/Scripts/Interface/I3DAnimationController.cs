@@ -14,5 +14,7 @@ public class I3DAnimationController : MonoBehaviour
 	}
 	public virtual void SetHit(int currenthp)
 	{ }
+	//public virtual void SetAttackEvent(GameUtils.VoidEvent onAttackEvent)
+	//{ }
 
 }

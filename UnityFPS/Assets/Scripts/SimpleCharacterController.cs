@@ -4,13 +4,12 @@ using UnityEngine;
 using DG.Tweening;
 using UnityEngine.AI;
 
-public class SimpleCharacterController : MonoBehaviour
+public class SimpleCharacterController : ICharacter
 {
 	public I3DAnimationController animController;
 	public Rigidbody body;
 	public FPSBulletController bulletPrefab;
 	public Transform shootPoint;
-	public int HP;
 	public float moveSpeed = 100;
 	public bool canControl = false;
 
@@ -18,22 +17,29 @@ public class SimpleCharacterController : MonoBehaviour
 
 	//	public Vector3 velocity;
 
-	int _currentHP = 0;
-	float _currentStundTime = 0;
+	EnemyHealthBar healthBar { get; set; }
+	float _currentStundTime = 0, _currentInAttack = 0;
+
+
+	#region UNITYFUNCTION
 	// Start is called before the first frame update
 	void Start()
 	{
+		this.HPCurrent = HPMax;
+		GeneratePlayerHealthBar();
 		//StartCoroutine(DoMove());
-		_currentHP = HP;
+
 	}
 
 	// Update is called once per frame
 	void Update()
 	{
 		if (_currentStundTime > 0) _currentStundTime -= Time.deltaTime;
+		if (_currentInAttack > 0) _currentInAttack -= Time.deltaTime;
 		if (Vector3.Distance(GameplayController.Instance.mainCharacter.transform.position, transform.position) > 5)
 			AIController.SetDestination(GameplayController.Instance.mainCharacter.transform.position);
 		else
+if (_currentInAttack <= 0)
 			SetAttack();
 		//velocity = body.velocity;
 		if (canControl)
@@ -46,6 +52,30 @@ public class SimpleCharacterController : MonoBehaviour
 				SetMove(MoveDirectEnum.IDLE);
 		}
 	}
+
+	private void OnCollisionEnter(Collision collision)
+	{
+		if (collision.gameObject.CompareTag("Bullet"))
+		{
+			FPSBulletController _bullet = collision.gameObject.GetComponent<FPSBulletController>();
+			if (_bullet != null && _bullet.Parent != null && _bullet.Parent.characterType.Equals(CharacterType.PLAYER))
+			{
+				HPCurrent--;
+				_currentStundTime = 3;
+				SetHit();
+			}
+		}
+	}
+	#endregion
+
+	public void GeneratePlayerHealthBar()
+	{
+		healthBar = Instantiate(GameplayController.Instance.enemyHealthBarPrefab);
+		healthBar.SetHealthBarData(this.transform, GameplayController.Instance.healthPanelRect);
+		//healthBar.transform.SetParent(healthPanelRect, false);
+	}
+
+
 	IEnumerator DoMove()
 	{
 		for (int i = 0; i < 100; i++)
@@ -66,7 +96,16 @@ public class SimpleCharacterController : MonoBehaviour
 	}
 	public void SetHit()
 	{
-		animController.SetHit(_currentHP);
+		animController.SetHit(HPCurrent);
+		SimplePool.Spawn(GameplayController.Instance.Effect_Blood, transform.position, transform.rotation);
+		if (healthBar != null)
+			healthBar.OnHealthChanged((float)HPCurrent / (float)HPMax);
+		if (HPCurrent <= 0)
+		{
+			SimplePool.Spawn(GameplayController.Instance.Effect_dead, transform.position, transform.rotation);
+			SimplePool.Despawn(healthBar.gameObject);
+			SimplePool.Despawn(gameObject);
+		}
 	}
 	public void SetJump()
 	{
@@ -135,24 +174,20 @@ public class SimpleCharacterController : MonoBehaviour
 	public void SetAttack()
 	{
 		if (_currentStundTime > 0) return;
+		if (_currentInAttack > 0) return;
+		_currentInAttack = 2;
 		LookAt(GameplayController.Instance.mainCharacter);
-		FPSBulletController _bullet = SimplePool.Spawn(bulletPrefab, shootPoint.position, shootPoint.rotation);
-		_bullet.Init(shootPoint);
 		animController.SetAttack();
 	}
 
-	private void OnCollisionEnter(Collision collision)
+	public void DoAttack()
 	{
-		if (collision.gameObject.CompareTag("Bullet"))
-		{
-			_currentHP--;
-			_currentStundTime = 3;
-			SetHit();
-		}
+		FPSBulletController _bullet = SimplePool.Spawn(bulletPrefab, shootPoint.position, shootPoint.rotation);
+		_bullet.Init(shootPoint, this);
 	}
-}
-public enum MoveDirectEnum
-{
-	UP, DOWN, LEFT, RIGHT, IDLE
+
+
+
+
 }
 
