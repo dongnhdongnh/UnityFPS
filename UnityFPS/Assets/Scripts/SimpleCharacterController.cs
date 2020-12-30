@@ -22,11 +22,14 @@ public class SimpleCharacterController : ICharacter
 
 
 	#region UNITYFUNCTION
+	private void OnEnable()
+	{
+		InitData();
+	}
 	// Start is called before the first frame update
 	void Start()
 	{
-		this.HPCurrent = HPMax;
-		GeneratePlayerHealthBar();
+
 		//StartCoroutine(DoMove());
 
 	}
@@ -67,9 +70,14 @@ if (_currentInAttack <= 0)
 		}
 	}
 	#endregion
-
+	public void InitData()
+	{
+		this.HPCurrent = HPMax;
+		GeneratePlayerHealthBar();
+	}
 	public void GeneratePlayerHealthBar()
 	{
+		if (healthBar != null) return;
 		healthBar = Instantiate(GameplayController.Instance.enemyHealthBarPrefab);
 		healthBar.SetHealthBarData(this.transform, GameplayController.Instance.healthPanelRect);
 		//healthBar.transform.SetParent(healthPanelRect, false);
@@ -103,7 +111,8 @@ if (_currentInAttack <= 0)
 		if (HPCurrent <= 0)
 		{
 			SimplePool.Spawn(GameplayController.Instance.Effect_dead, transform.position, transform.rotation);
-			SimplePool.Despawn(healthBar.gameObject);
+			//SimplePool.Despawn(healthBar.gameObject);
+			healthBar.gameObject.SetActive(false);
 			SimplePool.Despawn(gameObject);
 		}
 	}
