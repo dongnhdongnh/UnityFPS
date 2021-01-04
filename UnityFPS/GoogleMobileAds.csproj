@@ -458,6 +458,18 @@
     <Reference Include="winrt">
       <HintPath>E:/Projects/UnityFPS/UnityFPS/Assets/Plugins/UnityPurchasing/winrt/winrt.dll</HintPath>
     </Reference>
+    <Reference Include="Pathfinding.ClipperLib">
+      <HintPath>E:/Projects/UnityFPS/UnityFPS/Assets/AstarPathfindingProject/Plugins/Clipper/Pathfinding.ClipperLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Pathfinding.Poly2Tri">
+      <HintPath>E:/Projects/UnityFPS/UnityFPS/Assets/AstarPathfindingProject/Plugins/Poly2Tri/Pathfinding.Poly2Tri.dll</HintPath>
+    </Reference>
+    <Reference Include="Pathfinding.Ionic.Zip.Reduced">
+      <HintPath>E:/Projects/UnityFPS/UnityFPS/Assets/AstarPathfindingProject/Plugins/DotNetZip/Pathfinding.Ionic.Zip.Reduced.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Burst.Unsafe">
+      <HintPath>E:/Projects/UnityFPS/UnityFPS/Library/PackageCache/com.unity.burst@1.4.3/Unity.Burst.Unsafe.dll</HintPath>
+    </Reference>
     <Reference Include="netstandard">
       <HintPath>E:/Program Files (x86)/Unity/2019.4.11f1/Editor/Data/NetStandard/ref/2.0.0/netstandard.dll</HintPath>
     </Reference>
