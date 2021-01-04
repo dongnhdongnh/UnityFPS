@@ -51,9 +51,10 @@ public class MapLoader : MonoBehaviour
 		}
 		string _currentMap = mapList[_mapIndex];
 		_currentMapPosition = mapPosition[_mapIndex];
-		Debug.LogError("load map " + _currentMap);
-		mapLoader.mapName = _currentMap;
+		//mapLoader.isMapLoaded
+		mapLoader.SetMap(_currentMap);
 		mapLoader.MapOffset = _currentMapPosition;
-		mapLoader.LoadMapAsyncFromPoint(_currentMapPosition, 1);
+		Debug.LogError("load map " + mapLoader.currentMapName + "_current Must load " + _currentMap);
+		mapLoader.LoadMapAsyncFromPoint(_currentMapPosition, 10);
 	}
 }

@@ -4,6 +4,7 @@ using UnityEngine;
 using DG.Tweening;
 public class FPSGunController : ICharacter
 {
+
 	public GameObject HandView, GunView, GunShootPoint;
 	public FPSBulletController BulletPrefab;
 

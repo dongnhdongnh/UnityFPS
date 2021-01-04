@@ -14,31 +14,28 @@ public class GameplayController : Singleton<GameplayController>
 	public Transform Container_Enemy;
 	public ICharacter PrefabEnemy;
 
+	[Space]
+	public bool mapLoadOnRuntime = false;
 	public MapLoader mapLoader;
 	public List<MapCubeEvent> mapCubeEvent = new List<MapCubeEvent>();
 	// Start is called before the first frame update
 	void Start()
 	{
-	//	mainCharacter.gameObject.SetActive(false);
-		mapLoader.LoadMaps(new List<string> { "m1", "m2", "m3", "m4" },
+
+		if (!mapLoadOnRuntime)
+		{
+			mapCubeEvent = new List<MapCubeEvent>(GameObject.FindObjectsOfType<MapCubeEvent>());
+			InitEnemies();
+		}
+		//===Run time Load===
+		if (mapLoader == null || !mapLoadOnRuntime) return;
+		mainCharacter.Body.isKinematic = true;
+		mapLoader.LoadMaps(new List<string> { "m2", "m2", "m3", "m4" },
 		new List<Vector3> { Vector3.zero, new Vector3(0, 0, -16), new Vector3(-16, 0, -16), new Vector3(-16, 0, 0) },
 	   () =>
 {
 	InitPlayer();
-
-	SpawnPoints = new List<Transform>();
-	foreach (MapCubeEvent mapEvent in mapCubeEvent)
-	{
-		if (mapEvent.cubeEventType.Equals(CubeEventType.EnemySpawnPoint))
-		{
-			SpawnPoints.Add(mapEvent.transform);
-		}
-	}
-	if (SpawnPoints != null && SpawnPoints.Count > 0)
-		StartCoroutine(SpawnEnemies());
-	else
-		Debug.LogError("Have no EnemySpawnPoint");
-
+	InitEnemies();
 
 }
 );
@@ -60,6 +57,22 @@ public class GameplayController : Singleton<GameplayController>
 		mainCharacter.InitHP(10);
 		guiIngameController.SetPlayerHP(10);
 		mainCharacter.gameObject.SetActive(true);
+		mainCharacter.Body.isKinematic = false;
+	}
+	public void InitEnemies()
+	{
+		SpawnPoints = new List<Transform>();
+		foreach (MapCubeEvent mapEvent in mapCubeEvent)
+		{
+			if (mapEvent.cubeEventType.Equals(CubeEventType.EnemySpawnPoint))
+			{
+				SpawnPoints.Add(mapEvent.transform);
+			}
+		}
+		if (SpawnPoints != null && SpawnPoints.Count > 0)
+			StartCoroutine(SpawnEnemies());
+		else
+			Debug.LogError("Have no EnemySpawnPoint");
 	}
 
 	IEnumerator SpawnEnemies()
@@ -67,9 +80,9 @@ public class GameplayController : Singleton<GameplayController>
 		while (true)
 		{
 			Transform _spawnPoint = SpawnPoints[Random.Range(0, SpawnPoints.Count)];
-			ICharacter _e = SimplePool.Spawn(PrefabEnemy, _spawnPoint.position, Quaternion.identity);
+			ICharacter _e = SimplePool.Spawn(PrefabEnemy, _spawnPoint.position + new Vector3(0, 10, 0), Quaternion.identity);
 			_e.transform.parent = Container_Enemy;
-			yield return Yielders.Get(Random.Range(5, 10));
+			yield return Yielders.Get(Random.Range(50, 100));
 		}
 
 	}
