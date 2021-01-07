@@ -29,9 +29,12 @@ public class GameplayController : Singleton<GameplayController>
 		}
 		//===Run time Load===
 		if (mapLoader == null || !mapLoadOnRuntime) return;
-		mainCharacter.Body.isKinematic = true;
-		mapLoader.LoadMaps(new List<string> { "m2", "m2", "m3", "m4" },
-		new List<Vector3> { Vector3.zero, new Vector3(0, 0, -16), new Vector3(-16, 0, -16), new Vector3(-16, 0, 0) },
+		//mainCharacter.Body.isKinematic = true;
+		mapLoader.LoadMaps(new List<string> { "mc1", "mc1", "mc1", "mc1", "mc1", "mc1", "mc1", "mc1", "mc1", "mc1" },
+		new List<Vector3> { Vector3.zero, new Vector3(0, 0, -16), new Vector3(-16, 0, -16), new Vector3(-16, 0, 0),
+										  new Vector3(0, 0, 16), new Vector3(16, 0, 16), new Vector3(16, 0, 0),
+new Vector3(16, 0, -16),new Vector3(-16, 0, 16)
+ },
 	   () =>
 {
 	InitPlayer();
@@ -54,6 +57,7 @@ public class GameplayController : Singleton<GameplayController>
 	}
 	public void InitPlayer()
 	{
+		return;
 		mainCharacter.InitHP(10);
 		guiIngameController.SetPlayerHP(10);
 		mainCharacter.gameObject.SetActive(true);
