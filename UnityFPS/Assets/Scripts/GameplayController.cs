@@ -1,12 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class GameplayController : Singleton<GameplayController>
 {
 	public GUIInGameController guiIngameController;
-	public FPSGunController mainCharacter;
+	public GameObject CameraIntro;
+	public PlayerCharacterController mainCharacter;
 	public EnemyHealthBar enemyHealthBarPrefab;
+	public NavMeshSurface navMeshEnemy;
+
+	public EnemyManager enemyManager;
+
 	public RectTransform healthPanelRect;
 	public GameObject Effect_BulletHit, Effect_Blood, Effect_dead;
 
@@ -30,6 +36,8 @@ public class GameplayController : Singleton<GameplayController>
 		//===Run time Load===
 		if (mapLoader == null || !mapLoadOnRuntime) return;
 		//mainCharacter.Body.isKinematic = true;
+		CameraIntro.SetActive(true);
+		mainCharacter.gameObject.SetActive(false);
 		mapLoader.LoadMaps(new List<string> { "mc1", "mc1", "mc1", "mc1", "mc1", "mc1", "mc1", "mc1", "mc1", "mc1" },
 		new List<Vector3> { Vector3.zero, new Vector3(0, 0, -16), new Vector3(-16, 0, -16), new Vector3(-16, 0, 0),
 										  new Vector3(0, 0, 16), new Vector3(16, 0, 16), new Vector3(16, 0, 0),
@@ -39,7 +47,9 @@ new Vector3(16, 0, -16),new Vector3(-16, 0, 16)
 {
 	InitPlayer();
 	InitEnemies();
-
+	navMeshEnemy.BuildNavMesh();
+	mainCharacter.gameObject.SetActive(true);
+	CameraIntro.SetActive(false);
 }
 );
 
@@ -58,10 +68,10 @@ new Vector3(16, 0, -16),new Vector3(-16, 0, 16)
 	public void InitPlayer()
 	{
 		return;
-		mainCharacter.InitHP(10);
-		guiIngameController.SetPlayerHP(10);
-		mainCharacter.gameObject.SetActive(true);
-		mainCharacter.Body.isKinematic = false;
+		//mainCharacter.InitHP(10);
+		//guiIngameController.SetPlayerHP(10);
+		//mainCharacter.gameObject.SetActive(true);
+		//mainCharacter.Body.isKinematic = false;
 	}
 	public void InitEnemies()
 	{

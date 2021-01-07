@@ -3,7 +3,17 @@ guid: 7f8925eed1475914a99fe2d75f4f88e1
 ModelImporter:
   serializedVersion: 19301
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sentrygun.png
+    second: {fileID: 2100000, guid: 58dadaaccea177e43a569b9d76eeb4a9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sentrygun.png.001
+    second: {fileID: 2100000, guid: 58dadaaccea177e43a569b9d76eeb4a9, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0

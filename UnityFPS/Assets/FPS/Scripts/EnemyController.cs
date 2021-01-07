@@ -19,6 +19,8 @@ public class EnemyController : MonoBehaviour
 		}
 	}
 
+
+
 	[Header("Parameters")]
 	[Tooltip("The Y height at which the enemy will be automatically killed (if it falls off of the level)")]
 	public float selfDestructYHeight = -20f;
@@ -117,7 +119,16 @@ public class EnemyController : MonoBehaviour
 
 	void Start()
 	{
-		m_EnemyManager = FindObjectOfType<EnemyManager>();
+		InitController();
+		try
+		{
+			m_EnemyManager = GameplayController.Instance.enemyManager;
+		}
+		catch (System.Exception ex)
+		{
+			m_EnemyManager = FindObjectOfType<EnemyManager>();
+		}
+
 		DebugUtility.HandleErrorIfNullFindObject<EnemyManager, EnemyController>(m_EnemyManager, this);
 
 		m_ActorsManager = FindObjectOfType<ActorsManager>();
@@ -210,6 +221,11 @@ public class EnemyController : MonoBehaviour
 		}
 
 		m_WasDamagedThisFrame = false;
+	}
+
+	void InitController()
+	{
+		//this.enemyMobile.Init(this);
 	}
 
 	void EnsureIsWithinLevelBounds()
