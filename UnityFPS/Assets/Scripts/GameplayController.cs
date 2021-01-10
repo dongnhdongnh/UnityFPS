@@ -38,7 +38,12 @@ public class GameplayController : Singleton<GameplayController>
 		//mainCharacter.Body.isKinematic = true;
 		CameraIntro.SetActive(true);
 		mainCharacter.gameObject.SetActive(false);
-		mapLoader.LoadMaps(new List<string> { "mc1", "mc1", "mc1", "mc1", "mc1", "mc1", "mc1", "mc1", "mc1", "mc1" },
+		List<string> mapToLoad = new List<string>();
+		for (int i = 0; i < 10; i++)
+		{
+			mapToLoad.Add("mc" + Random.Range(1, 4));
+		}
+		mapLoader.LoadMaps(mapToLoad,
 		new List<Vector3> { Vector3.zero, new Vector3(0, 0, -16), new Vector3(-16, 0, -16), new Vector3(-16, 0, 0),
 										  new Vector3(0, 0, 16), new Vector3(16, 0, 16), new Vector3(16, 0, 0),
 new Vector3(16, 0, -16),new Vector3(-16, 0, 16)

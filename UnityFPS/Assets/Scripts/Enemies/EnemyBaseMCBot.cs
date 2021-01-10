@@ -146,7 +146,7 @@ public class EnemyBaseMCBot : MonoBehaviour
 			AudioUtility.CreateSFX(onDetectSFX, transform.position, AudioUtility.AudioGroups.EnemyDetection, 1f);
 		}
 
-		animator.SetBool(k_AnimAlertedParameter, true);
+	//	animator.SetBool(k_AnimAlertedParameter, true);
 	}
 
 	void OnLostTarget()
@@ -161,7 +161,7 @@ public class EnemyBaseMCBot : MonoBehaviour
 			onDetectVFX[i].Stop();
 		}
 
-		animator.SetBool(k_AnimAlertedParameter, false);
+	//	animator.SetBool(k_AnimAlertedParameter, false);
 	}
 
 	void OnDamaged()
@@ -172,7 +172,7 @@ public class EnemyBaseMCBot : MonoBehaviour
 			randomHitSparks[n].Play();
 		}
 
-		animator.SetTrigger(k_AnimOnDamagedParameter);
+	//	animator.SetTrigger(k_AnimOnDamagedParameter);
 	}
 }
 
